@@ -4,7 +4,7 @@ import { BookmarkService } from './bookmark.service';
 @Component({
   selector: 'bookmark-app',
   template: `
-    <bookmark-edit></bookmark-edit>
+    <bookmark-edit (save)="save($event)"></bookmark-edit>
     <bookmark-list [bookmarks]="bookmarks"></bookmark-list>
   `,
 })
@@ -15,5 +15,9 @@ export class AppComponent {
   constructor(private bookmarkService: BookmarkService) {
     this.bookmarkService.getBookmarks()
     .then(bookmarks => this.bookmarks = bookmarks);
+  }
+
+  save(bookmark) {
+    console.info('should save', bookmark);
   }
 }
