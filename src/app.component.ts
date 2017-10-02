@@ -4,15 +4,8 @@ import { BookmarkService } from './bookmark.service';
 @Component({
   selector: 'bookmark-app',
   template: `
-    <div class="panel panel-default">
-      <table class="table table-striped">
-        <tr *ngFor="let bookmark of bookmarks">
-          <td>
-            <a [href]="bookmark.url" target ="_blank">{{bookmark.title}}</a>
-          </td>
-        </tr>
-      </table>
-    </div>
+    <bookmark-edit></bookmark-edit>
+    <bookmark-list [bookmarks]="bookmarks"></bookmark-list>
   `,
 })
 export class AppComponent {
