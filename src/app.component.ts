@@ -4,11 +4,15 @@ import { BookmarkService } from './bookmark.service';
 @Component({
   selector: 'bookmark-app',
   template: `
-    <table>
-      <tr *ngFor="let bookmark of bookmarks">
-        <td>{{bookmark.title}}</td>
-      </tr>
-    </table>
+    <div class="panel panel-default">
+      <table class="table table-striped">
+        <tr *ngFor="let bookmark of bookmarks">
+          <td>
+            <a [href]="bookmark.url" target ="_blank">{{bookmark.title}}</a>
+          </td>
+        </tr>
+      </table>
+    </div>
   `,
 })
 export class AppComponent {
@@ -17,6 +21,6 @@ export class AppComponent {
 
   constructor(private bookmarkService: BookmarkService) {
     this.bookmarkService.getBookmarks()
-    .then(bookmarks => console.info(bookmarks));
+    .then(bookmarks => this.bookmarks = bookmarks);
   }
 }

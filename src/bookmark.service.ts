@@ -21,7 +21,8 @@ export class BookmarkService {
         id: id,
         title:parsedResponse[id].title,
         url: parsedResponse[id].url
-      }));
+      }))
+      .sort((a, b) => a.title.localeCompare(b.title));
   }
 
 }
