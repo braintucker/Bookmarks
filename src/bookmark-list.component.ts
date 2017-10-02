@@ -18,4 +18,4 @@ export class BookmarkListComponent {
 
   @Input() bookmarks = [];
 
-  }
+}

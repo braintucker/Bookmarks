@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'bookmark-edit',
   template: `
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
       <div class="panel-body">
         <input type="text" [(ngModel)]="bookmark.title"
           placeholder="Title" style="width: 25%;">
@@ -16,7 +16,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class BookmarkEditComponent {
 
-  bookmark = [];
+  bookmark = {};
 
   @Output() save = new EventEmitter();
 
@@ -24,4 +24,4 @@ export class BookmarkEditComponent {
     this.save.emit(this.bookmark);
   }
 
- }
+}

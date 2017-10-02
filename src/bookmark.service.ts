@@ -8,18 +8,23 @@ export class BookmarkService {
 
   constructor(private http: Http) { }
 
+  addBookmark(bookmark) {
+    const json = JSON.stringify(bookmark);
+    return this.http.post(`${this.baseUrl}/bookmarks.json`, json)
+      .toPromise();
+  }
+
   getBookmarks() {
     return this.http.get(`${this.baseUrl}/bookmarks.json`)
       .toPromise()
       .then(response => this.convert(response.json()));
   }
 
-  //Method that converts into an array of objects
   private convert(parsedResponse) {
     return Object.keys(parsedResponse)
       .map(id => ({
         id: id,
-        title:parsedResponse[id].title,
+        title: parsedResponse[id].title,
         url: parsedResponse[id].url
       }))
       .sort((a, b) => a.title.localeCompare(b.title));

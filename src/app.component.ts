@@ -13,11 +13,17 @@ export class AppComponent {
   bookmarks = [];
 
   constructor(private bookmarkService: BookmarkService) {
-    this.bookmarkService.getBookmarks()
-    .then(bookmarks => this.bookmarks = bookmarks);
+    this.reload();
   }
 
   save(bookmark) {
-    console.info('should save', bookmark);
+    this.bookmarkService.addBookmark(bookmark)
+      .then(() => this.reload());
   }
+
+  private reload() {
+    return this.bookmarkService.getBookmarks()
+      .then(bookmarks => this.bookmarks = bookmarks);
+  }
+
 }
