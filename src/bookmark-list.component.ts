@@ -9,6 +9,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
           <td>
             <a [href]="bookmark.url" target="_blank">{{bookmark.title}}</a>
           </td>
+          <td class="hidden-xs hidden-sm">{{bookmark.url}}</td>
           <td>
             <button (click)="onEdit(bookmark)"
               class="btn btn-primary">
