@@ -16,8 +16,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class BookmarkEditComponent {
 
-  bookmark = {};
-
+  @Input() bookmark = {};  
   @Output() save = new EventEmitter();
 
   onSave() {
