@@ -16,6 +16,8 @@ export class AppComponent {
   editableBookmark = {};
 
   constructor(private bookmarkService: BookmarkService) {
+    this.bookmarkService.errorHandler = error =>
+      window.alert('The server request failed!');
     this.reload();
   }
 
@@ -46,5 +48,4 @@ export class AppComponent {
     return this.bookmarkService.getBookmarks()
       .then(bookmarks => this.bookmarks = bookmarks);
   }
-
 }

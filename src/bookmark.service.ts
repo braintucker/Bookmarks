@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 @Injectable()
 export class BookmarkService {
 
+  errorHandler = error => console.error('BookmarkService error', error);
   private baseUrl = 'https://ang2-9039b.firebaseio.com/';
 
   constructor(private http: Http) { }
@@ -11,18 +12,21 @@ export class BookmarkService {
   addBookmark(bookmark) {
     const json = JSON.stringify(bookmark);
     return this.http.post(`${this.baseUrl}/bookmarks.json`, json)
-      .toPromise();
+      .toPromise()
+      .catch(this.errorHandler);
   }
 
   getBookmarks() {
     return this.http.get(`${this.baseUrl}/bookmarks.json`)
       .toPromise()
-      .then(response => this.convert(response.json()));
+      .then(response => this.convert(response.json()))
+      .catch(this.errorHandler);
   }
 
   removeBookmark(bookmark) {
     return this.http.delete(`${this.baseUrl}/bookmarks/${bookmark.id}.json`)
-      .toPromise();
+      .toPromise()
+      .catch(this.errorHandler);
   }
 
   updateBookmark(bookmark) {
@@ -31,7 +35,8 @@ export class BookmarkService {
       url: bookmark.url
     });
     return this.http.patch(`${this.baseUrl}/bookmarks/${bookmark.id}.json`, json)
-      .toPromise();
+      .toPromise()
+      .catch(this.errorHandler);
   }
   private convert(parsedResponse) {
     return Object.keys(parsedResponse)
