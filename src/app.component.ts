@@ -29,8 +29,13 @@ export class AppComponent {
   }
 
   save(bookmark) {
-    this.bookmarkService.addBookmark(bookmark)
-      .then(() => this.reload());
+    if (bookmark.id){
+      this.bookmarkService.updateBookmark(bookmark)
+        .then(() => this.reload());
+    } else {
+      this.bookmarkService.addBookmark(bookmark)
+        .then(() => this.reload());
+    }
   }
 
   private reload() {
