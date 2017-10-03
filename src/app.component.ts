@@ -5,7 +5,7 @@ import { BookmarkService } from './bookmark.service';
   selector: 'bookmark-app',
   template: `
     <bookmark-edit [bookmark]="editableBookmark"
-      (save)="save($event)"></bookmark-edit>
+      (save)="save($event)" (clear)="clear()"></bookmark-edit>
     <bookmark-list [bookmarks]="bookmarks"
       (edit)="edit($event)" (remove)="remove($event)"></bookmark-list>
   `,
@@ -19,6 +19,9 @@ export class AppComponent {
     this.reload();
   }
 
+  clear() {
+    this.editableBookmark = {};
+  }
   edit(bookmark) {
     this.editableBookmark = Object.assign({}, bookmark);
   }
@@ -36,7 +39,7 @@ export class AppComponent {
       this.bookmarkService.addBookmark(bookmark)
         .then(() => this.reload());
     }
-      this.editableBookmark = {};
+      this.clear();
   }
 
   private reload() {

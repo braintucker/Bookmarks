@@ -11,9 +11,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
           </td>
           <td>
             <button (click)="onEdit(bookmark)"
-              class="btn btn-primary">Edit</button>
+              class="btn btn-primary">
+              <span class="glyphicon glyphicon-pencil"></span>
+              <span class="hidden-xs">Edit</span>
+              </button>
             <button (click)="onRemove(bookmark)"
-              class="btn btn-danger">Delete</button>
+              class="btn btn-danger">
+              <span class="glyphicon glyphicon-trash"></span>
+              <span class="hidden-xs">Delete</span>
+            </button>
           </td>
         </tr>
       </table>
