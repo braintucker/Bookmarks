@@ -36,6 +36,7 @@ export class AppComponent {
       this.bookmarkService.addBookmark(bookmark)
         .then(() => this.reload());
     }
+      this.editableBookmark = {};
   }
 
   private reload() {
