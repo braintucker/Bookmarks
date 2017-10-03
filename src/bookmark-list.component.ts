@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'bookmark-list',
@@ -9,6 +9,10 @@ import { Component, Input } from '@angular/core';
           <td>
             <a [href]="bookmark.url" target="_blank">{{bookmark.title}}</a>
           </td>
+          <td>
+            <button (click)="onRemove(bookmark)"
+            class="btn btn-danger">Delete</button>
+          </td>
         </tr>
       </table>
     </div>
@@ -17,5 +21,11 @@ import { Component, Input } from '@angular/core';
 export class BookmarkListComponent {
 
   @Input() bookmarks = [];
+  @Output() remove = new EventEmitter();
+
+  onRemove(bookmark) {
+    this.remove.emit(bookmark);
+
+  }
 
 }
